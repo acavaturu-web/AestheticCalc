@@ -1,9 +1,9 @@
 import React, { useEffect, useRef } from 'react';
-import { Animated, Pressable, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Animated, Pressable, StyleSheet, Text, View } from 'react-native';
 import { useTheme } from '../context/ThemeContext';
 
-export default function Display({ displayValue, expressionStr, onBackspace, onToggleTheme }) {
-  const { theme, isDark } = useTheme();
+export default function Display({ displayValue, expressionStr, onBackspace }) {
+  const { theme } = useTheme();
 
   // Slide-up fade animation when result changes
   const slideAnim = useRef(new Animated.Value(0)).current;
@@ -27,13 +27,6 @@ export default function Display({ displayValue, expressionStr, onBackspace, onTo
 
   return (
     <View style={styles.container}>
-      {/* Theme toggle */}
-      <TouchableOpacity onPress={onToggleTheme} style={styles.themeToggle} hitSlop={12}>
-        <Text style={[styles.themeIcon, { color: theme.secondaryText }]}>
-          {isDark ? '☀' : '◐'}
-        </Text>
-      </TouchableOpacity>
-
       {/* Secondary expression row with backspace */}
       <View style={styles.expressionRow}>
         <Text
@@ -75,14 +68,6 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-end',
     paddingHorizontal: 24,
     paddingBottom: 16,
-  },
-  themeToggle: {
-    position: 'absolute',
-    top: 16,
-    right: 24,
-  },
-  themeIcon: {
-    fontSize: 20,
   },
   expressionRow: {
     flexDirection: 'row',

@@ -8,7 +8,7 @@ import Display from './src/components/Display';
 import { useCalculator } from './src/hooks/useCalculator';
 
 function Calculator() {
-  const { theme, isDark, toggleTheme } = useTheme();
+  const { theme } = useTheme();
   const { state, dispatch } = useCalculator();
 
   // Show active operator highlight only while waiting for next operand
@@ -24,7 +24,6 @@ function Calculator() {
             displayValue={state.displayValue}
             expressionStr={state.expressionStr}
             onBackspace={() => dispatch({ type: 'BACKSPACE' })}
-            onToggleTheme={toggleTheme}
           />
           <ButtonGrid onAction={dispatch} pendingOp={activeOp} />
           </View>
